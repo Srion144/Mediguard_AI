@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+venv/
+.env
+
+node_modules/
+dist/
+
+ml_training/datasets/
+ml_training/saved_models/
+
+.vscode/
