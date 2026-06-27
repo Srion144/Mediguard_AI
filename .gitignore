@@ -6,7 +6,7 @@ venv/
 node_modules/
 dist/
 
+ml_training/saved_models/*.pt
 ml_training/datasets/
-ml_training/saved_models/
 
 .vscode/
