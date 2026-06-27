@@ -1,4 +1,4 @@
-# gradcam.py — heatmap banata hai, model kahan dekh raha tha
+# gradcam.py — generates heatmap showing where the model focused
 import torch
 import numpy as np
 import cv2
@@ -32,6 +32,7 @@ class GradCAM:
         return cam, class_idx
 
 def overlay(cam, pil_img):
+    # blend heatmap with original image
     img = np.array(pil_img.convert("RGB").resize((224, 224)))[:, :, ::-1]
     heat = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
     return cv2.addWeighted(img, 0.6, heat, 0.4, 0)
