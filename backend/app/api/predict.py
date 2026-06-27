@@ -1,4 +1,4 @@
-# predict.py — main endpoint, frontend yahi call karta hai
+# predict.py — main endpoint called by the frontend
 from fastapi import APIRouter, UploadFile, File, HTTPException
 from PIL import Image
 import io, base64, cv2, torch
@@ -26,7 +26,7 @@ EXPLANATION_HI = {
     "Proliferative": "Gambhir awastha mein diabetic retinopathy paai gayi. Turant ilaaj zaroori hai.",
 }
 
-# GradCAM setup — model load hone ke baad
+# initialize GradCAM after model is loaded
 cam_engine = None
 if retina_model is not None:
     cam_engine = GradCAM(retina_model, retina_model.layer4[-1])
@@ -36,7 +36,7 @@ async def predict(image: UploadFile = File(...)):
     if retina_model is None:
         raise HTTPException(
             status_code=503,
-            detail="Model abhi load nahi hua. Pehle retina_v1.pth train karo."
+            detail="Model not loaded. Train retina_v1.pth on Kaggle first."
         )
 
     raw = await image.read()

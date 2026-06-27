@@ -1,4 +1,4 @@
-# preprocess.py — image ko model ke liye ready karta hai
+# preprocess.py — resize and normalize image for model input
 from torchvision import transforms
 
 _tf = transforms.Compose([
@@ -9,5 +9,5 @@ _tf = transforms.Compose([
 ])
 
 def preprocess(pil_img):
-    # batch dimension add karta hai: (1, 3, 224, 224)
+    # add batch dimension: (1, 3, 224, 224)
     return _tf(pil_img.convert("RGB")).unsqueeze(0)
